@@ -1,0 +1,40 @@
+{
+    "general"      : {
+                      "cuda"                    : 1,
+                      "gpu no"                  : 0,
+                      "iterations"              : 200,
+                      "propagation type"        : "custom",
+                      "output directory"        : "./magazines_l2",
+                      "comment"                 : "Loss weight order is: Metameric, L2, blur_m, blur_l, l2 metamer loss.",
+                      "loss weights"            : [1.0,0.0,0.0,0.0,0.0],
+                      "region of interest"      : [0.05,0.95],
+                      "learning rate"           : 0.2,
+                      "multiplier"              : 1.0,
+                      "hologram no"             : 15,
+                      "kernel filename"         : "calibrations/kernel.pt"
+                     },
+
+    "metameric"    : {
+                      "real viewing distance"   : 0.6,
+                      "real image width"        : 1.5
+                     },
+
+    "dataset"      : {
+                      "input directory"         : "../../images/magazines",
+                      "keys"                    : [".png",".json"]
+                     },
+
+    "image"        : {
+                      "location"                : [0.0,0.0,0.15]
+                     },
+
+    "slm"          : {
+                      "model"                   : "Holoeye Pluto 2.1",
+                      "pixel pitch"             : 0.000008,
+                      "resolution"              : [1080,1920]
+                     },
+
+    "beam"         : {
+                      "wavelengths"             : [0.000000639,0.000000515,0.000000437]
+                     }
+}

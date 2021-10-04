@@ -1,0 +1,19 @@
+{
+    "gaze location": [
+        0.420,
+        0.625
+    ],
+    "distance": 4.135524113689086,
+    "camera world location": [
+        -3.2004995346069336,
+        7.864269256591797,
+        0.1358763575553894
+    ],
+    "gaze world location": [
+        -0.4571160078048706,
+        4.769804000854492,
+        0.10957010090351105
+    ],
+    "object in focus": "Cone",
+    "camera aperture f stop": 1.4
+}
