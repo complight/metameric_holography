@@ -9,7 +9,7 @@
 [Tobias Ritschel](http://www.homepages.ucl.ac.uk/~ucactri/)
 and [Kaan Akşit](https://kaanaksit.com)
 
-[Project Page (coming soon)](https://vr.cs.ucl.ac.uk/research/pipelines/) | [Manuscript (coming soon)]()
+[Project Page](https://vr.cs.ucl.ac.uk/research/pipelines/metameric-varifocal-holography/) | [Paper](https://arxiv.org/abs/2110.01981)
 
 # Description
 
