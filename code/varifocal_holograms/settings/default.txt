@@ -7,7 +7,7 @@
                       "output directory"        : "./magazines_l2",
                       "comment"                 : "Loss weight order is: Metameric, L2, blur_m, blur_l, l2 metamer loss.",
                       "loss weights"            : [1.0,0.0,0.0,0.0,0.0],
-                      "region of interest"      : [0.05,0.95],
+                      "region of interest"      : [0.10,0.95,0.10,0.85],
                       "learning rate"           : 0.2,
                       "multiplier"              : 1.0,
                       "hologram no"             : 15,

@@ -84,11 +84,12 @@ def optimize(settings,kernel,dataset,criterion,device,grating=None,wavelength_id
     hologram_no          = settings["general"]["hologram no"]
     multiplier           = settings["general"]["multiplier"]
     ones                 = torch.ones(resolution[0],resolution[1],requires_grad=False).to(device)
-    mask                 = torch.zeros(3,resolution[0],resolution[1],requires_grad=False).to(device)
+    mask                 = torch.zeros(1,3,resolution[0],resolution[1],requires_grad=False).to(device)
     mask[
+         0,
          :,
          int(resolution[0]*m[0]):int(resolution[0]*m[1]),
-         int(resolution[1]*m[0]):int(resolution[1]*m[1])
+         int(resolution[1]*m[2]):int(resolution[1]*m[3])
         ]                = 1
     if type(kernel) != type(None):
         kernel.requires_grad = False
@@ -110,9 +111,9 @@ def optimize(settings,kernel,dataset,criterion,device,grating=None,wavelength_id
             else:
                 distance      = settings["image"]["location"][2]
             t_optim            = tqdm(range(n_iterations),leave=False)
-            noise              = torch.rand(target_orig.shape).to(device)*0.01
+            noise              = torch.rand(target_orig.shape).to(device)*0.003
             target             = target_orig.detach().clone()+noise
-            target             = target*multiplier*mask
+            target             = target*multiplier
             description        = "Hologram no:{}, target no:{}".format(h,target_id)
             t_target.set_description(description)
             for n in t_optim:
@@ -132,13 +133,13 @@ def optimize(settings,kernel,dataset,criterion,device,grating=None,wavelength_id
                               0,
                               wavelength_id,
                              ] = calculate_amplitude(field)**2
-                loss = evaluate(image_rgb*mask,target,criterion,header=header,w=loss_weights)
+                loss = evaluate(image_rgb*mask,target*mask,criterion,header=header,w=loss_weights)
                 loss.backward(retain_graph=True)
                 optimizer.step()
                 description = "Iteration:{}, Loss:{:.4f}".format(n,loss.item()) 
                 t_optim.set_description(description)
             print("Final loss %f" % loss.item())
-            image_rgb              = image_rgb.detach().clone()*mask
+            image_rgb              = image_rgb.detach().clone()
             reconstruction[:,:,0]  = image_rgb[0,0].detach().clone()
             reconstruction[:,:,1]  = image_rgb[0,1].detach().clone()
             reconstruction[:,:,2]  = image_rgb[0,2].detach().clone() 
@@ -146,11 +147,11 @@ def optimize(settings,kernel,dataset,criterion,device,grating=None,wavelength_id
             temporal_image[:,:,1] += image_rgb[0,1].detach().clone()
             temporal_image[:,:,2] += image_rgb[0,2].detach().clone()
             save_results(
-                         input_phase.detach().clone()*mask,
+                         input_phase.detach().clone(),
                          reconstruction.detach().clone(),
                          temporal_image.detach().clone(),
                          target[0].detach().clone(),
-                         grating.clone()*mask[0],
+                         grating.clone(),#*mask[0],
                          directory,
                          h,
                          target_id+1,
