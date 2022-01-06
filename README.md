@@ -11,7 +11,7 @@ and [Kaan Akşit](https://kaanaksit.com)
 
 <img src='https://github.com/complight/metameric_holography/raw/main/teaser.png' width=960>
 
-[Project Page](https://vr.cs.ucl.ac.uk/research/pipelines/metameric-varifocal-holography/) | [Paper](https://arxiv.org/abs/2110.01981)
+[Project Page](https://vr.cs.ucl.ac.uk/research/pipelines/metameric-varifocal-holography/) | [Paper](https://arxiv.org/abs/2110.01981) | [Video](https://vimeo.com/623474853)
 
 # Description
 
